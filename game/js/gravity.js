@@ -1,34 +1,36 @@
 var canvas, ctx;
 
-
 class MyFunGame {
     constructor() {
         this._frame = 0;
         this._canvasInitted = false;
         this._shapes = [];
-    //    this.InitCanvas();
-        this.Render();
+		// this.InitCanvas();
+		//this.Render();
     }
-
     InitCanvas() {
         this._canvasInitted = true;
         canvas = document.getElementById('theCanvas');
         ctx = canvas.getContext('2d');
         canvas.setAttribute('width', window.innerWidth);
         this.DropShapes();
-        window.requestAnimationFrame(() => this.Render());
+       window.requestAnimationFrame(() => this.Render());
     }
+	ClearCanvas() {
+	
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	}
 
     DropShapes() {
         if (this._shapes.length <= 0) window.requestAnimationFrame(() => this.Render());
 
-        var howManyToDrop = getRandomInt(0, 1);
+        var howManyToDrop = getRandomInt(0,1);
         for (var xIt = 1; xIt <= howManyToDrop; xIt++) {
-            var shape = new Circle(getRandomInt(0, parseInt(canvas.getAttribute('width'))), 0, randomColors(), randomNumFrom(0.15, 0.65), randomNumFrom(0.05, 1.45), randomNumFrom(2, 20));
+            var shape = new Circle(getRandomInt(1, parseInt(canvas.getAttribute('width'))), 0, randomColors(), randomNumFrom(0.15, 0.65), randomNumFrom(0.05, 1.45), randomNumFrom(2, 20));
             this._shapes.push(shape);
         }
 
-        setTimeout(() => this.DropShapes(), getRandomInt(450, 950));
+        setTimeout(() => this.DropShapes(), getRandomInt(350, 950));
 
     }
 
@@ -58,10 +60,7 @@ class MyFunGame {
             shape.DrawR();
             shape.DrawS();
             shape.DrawU();
-            //console.log(shape);
-            /*shape.on("click", function(e){
-                   alert("clicked on circle ");
-               });*/
+           
         }, this);
     }
 
@@ -80,12 +79,12 @@ class Shape {
 
         this._x = 300;
         this._y = 2;
-        //this._color = color;
-        this._gravity = gravity;
-        //this._alpha = alpha;
+        this._color = color;
+       this._gravity = gravity;
+        this._alpha = alpha;
     }
 
-    //get type() { return this._type }
+    get type() { return this._type }
     get x() {
         return this._x
     }
@@ -166,11 +165,11 @@ class Circle extends Shape {
 }
 
 function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+   return Math.floor(Math.random() * (max - min )+1)+ min;
 }
 
 function randomNumFrom(min, max) {
-    return Math.random() * (max - min) + min;
+   return Math.random() * (max - min) + min;
 }
 
 function randomColors() {

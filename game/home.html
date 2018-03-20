@@ -1,110 +1,58 @@
-
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <title>My Fun Game</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" type="text/css" href="css/home.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script src="js/angular.js"></script>
-      <script type="text/javascript">
-      	
-		
-	var app = angular.module('app', []);
-	app.controller('myCtrl', function($scope) {
-      		var sequenceArray = ['one', 'two'];
-      		var level = 1;
-      		var time = 60;
-            $scope.startGame = function(){      		
-			myFunGame.InitCanvas();
-
-      			setInterval(function(){
-	      			if(time == 0) {
-						if(level == 5){
-						level = 0;
-						alert("successfully completed.....!");
-						}
-	      				time = 60;
-						alert("successfully completed level : "+ level);
-						level = level + 1;
-								
-	      			}
-	      			time = time - 1;
-					angular.element('#level').html(level);
-	      			angular.element('#time').html(time);
-		      	},1000);
-				}
-      		
-      		
-      	
-				$scope.canvasClick = function(e){
-			var canvas = angular.element('#theCanvas');
-
-      			var x = e.clientX;
-   				 var y = e.clientY;
-   				 
-      			var ctx = canvas.getContext('2d');
-      			const mousePos = {
-			        x: e.clientX - canvas.offsetTop,
-			        y: e.clientY - canvas.offsetLeft
-			    };
-			    console.log(canvas);
-      			const pixel = ctx.getImageData(mousePos.x, mousePos.y, 1, 1).data;
-			    console.log(ctx);
-
-			    const color = `rgb(${pixel[0]},${pixel[1]},${pixel[2]})`;
-			    console.log(color);
-				}
-			
-	});
-		
-		
-      
-	  
-      </script>
-   </head>
+<head>
+  <title> SHAPE AND SHAPES</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/home.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/angular.js"></script>
+  <script src="js/config.js"></script>
+  </head>
    <body ng-app="app" ng-controller="myCtrl">
-      <div class="container">
-         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12"></div>
-            <div class="col-xs-12 col-sm-12 col-md-12"></div>
-            <div class="col-xs-12 col-sm-2 col-md-2"></div>
-            <div class="col-xs-12 col-sm-8 col-md-8">
-            	<button class="btn btn-success" ng-click="startGame()" id="startGame"> Start Game</button>
-               <h5>
-               		<span class="level">LEVEL : </span><span  class="level" id="level"></span><span class="score">SCORE</span><span class="time">TIME : <span id="time"> </span></span></h5>
-               <div class="first" ng-mouseenter="canvasClick()" >
-                  <canvas id="theCanvas" width="500px" height="600px"></canvas>
-               </div>
-               <div class="second">
-                  <div class="lineone">
-                     <canvas id="one"></canvas>
-                     <canvas id="two"></canvas>
-                  </div>
-                  <div class="linetwo">
-                     <canvas id="six"></canvas>
-                     <canvas id="three"></canvas>
-                  </div>
-                  <div class="linethree">
-                     <canvas id="four" class="traingle"></canvas>
-                     <canvas id="five" class="circle"></canvas>
-                  </div>
-                  <div class="linefour">
-                     <canvas id="seven" class="diamond"></canvas>
-                     <canvas id="eight"  class="square"></canvas>
-                  </div>
-               </div>
-            </div>
-            <div class="col-xs-12 col-sm-2 col-md-2"></div>
-         </div>
-      </div>
-      <script src="script.js"></script>
-      <script src="gravity.js"></script>			
+<div class="container">
+        <div class="row">
+           <div class="col-xs-12 col-sm-2 col-md-2"></div>
+              <div class="col-xs-12 col-sm-8 col-md-8">
+			     <button class="btn btn-success" ng-click="startGame()" id="startGame"> Start Game</button>
+               		<h5><span class="level">LEVEL : </span><span  class="level" id="level"></span><span class="score">SCORE:</span><span class="score_label" id="score"></span><span class="time">TIME : <span id="time"> </span></span></h5>
+                     <div class="first" >					 
+						<canvas id="theCanvas" width="500px" height="800px" ng-click="canvasClick()"></canvas>
+						</div>
+                        <div class="second">
+						<div class="lineone">
+                        <canvas id="one"></canvas>
+                        <canvas id="two"></canvas>
+						</div>
+						<div class="linetwo">
+						<canvas id="six"></canvas>
+						<canvas id="three"></canvas>
+						</div>
+						<div class="linethree">
+						<canvas id="four"></canvas>
+						<canvas id="five"></canvas>
+						</div>
+						<div class="linefour">
+						<canvas id="seven"></canvas>
+						<canvas id="eight"></canvas>
+						</div>
+						<div class="linefive">
+						<canvas id="nine"></canvas>
+						<canvas id="ten"></canvas>
+						</div>
+						</div>  
+						</div>
+                    <div class="col-xs-12 col-sm-2 col-md-2"></div>
+				</div>
+			</div>
+ <script src="js/script.js"></script>
+ <script src="js/gravity.js"></script>			
    </body>
 </html>
+
+
+
 
 
 
